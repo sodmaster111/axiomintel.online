@@ -1,0 +1,18 @@
+{
+  "title": "Zapier Revenue Ops Recipes",
+  "slug": "zapier-revenue-ops",
+  "category": "Business Ops",
+  "description": "Automation pack for lead routing, enrichment, invoice alerts, and churn flags.",
+  "pros": [
+    "Ready-to-import Zap templates",
+    "Includes data hygiene steps",
+    "Playbooks for RevOps QA"
+  ],
+  "cons": [
+    "Heavy usage may need Zapier Teams",
+    "Some zaps require webhook credits"
+  ],
+  "price_note": "$49 one-time library",
+  "affiliate_url": "https://example.com/zapier-revops?utm_campaign=axiomintel",
+  "updated_at": "2024-11-28"
+}

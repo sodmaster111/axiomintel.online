@@ -1,0 +1,18 @@
+{
+  "title": "Figma System Starter",
+  "slug": "figma-system-starter",
+  "category": "Templates",
+  "description": "Token-driven design system with marketing and product primitives aligned to WCAG.",
+  "pros": [
+    "Responsive-ready component library",
+    "Token sync to Tailwind scales",
+    "Audit checklist for accessibility"
+  ],
+  "cons": [
+    "Needs Figma variables enabled",
+    "Best with Tailwind/React handoff"
+  ],
+  "price_note": "$68 for full kit + updates",
+  "affiliate_url": "https://example.com/figma-kit?aff=axiomintel",
+  "updated_at": "2024-07-03"
+}

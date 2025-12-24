@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const tools = await getCollection('tools');
+const categories = Array.from(
+  tools.reduce((acc, tool) => acc.add(tool.data.category), new Set<string>())
+).map((name) => ({
+  name,
+  slug: name.toLowerCase().replace(/\s+/g, '-')
+}));
+---
+<BaseLayout
+  title="Categories — AxiomIntel"
+  description="Browse templates and automation kits by category to speed up your workflow."
+  canonical="https://axiomintel.online/categories"
+>
+  <Breadcrumbs items={[{ href: '/categories', label: 'Categories' }]} />
+  <h1 class="section-title mt-4">Categories</h1>
+  <p class="section-subtitle">Link into each stack and see related tools.</p>
+
+  <div class="grid-responsive">
+    {categories.map((cat) => (
+      <article class="card" key={cat.slug}>
+        <div class="flex items-center justify-between mb-2">
+          <a class="font-semibold text-lg" href={`/categories/${cat.slug}`}>{cat.name}</a>
+          <span class="badge-muted">{tools.filter((t) => t.data.category === cat.name).length} tools</span>
+        </div>
+        <p class="text-slate-400 mb-3">Curated picks and guides for {cat.name.toLowerCase()} teams.</p>
+        <a class="tag" href={`/categories/${cat.slug}`}>View category</a>
+      </article>
+    ))}
+  </div>
+</BaseLayout>

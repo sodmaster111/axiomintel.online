@@ -1,0 +1,18 @@
+{
+  "title": "Make.com Automation Kit",
+  "slug": "make-automation-kit",
+  "category": "Business Ops",
+  "description": "Composable scenarios for billing ops, lead scoring, and async onboarding emails.",
+  "pros": [
+    "Scenario blueprints with error handling",
+    "Templates for webhook retries",
+    "Email + Slack notifications baked in"
+  ],
+  "cons": [
+    "Needs Make Pro for high-volume routes",
+    "Learning curve for new operators"
+  ],
+  "price_note": "$35 pack with Loom explainers",
+  "affiliate_url": "https://example.com/make-kit?aff=axiomintel",
+  "updated_at": "2024-10-05"
+}

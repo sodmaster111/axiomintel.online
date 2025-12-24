@@ -1,0 +1,18 @@
+{
+  "title": "Linear Priorities Kit",
+  "slug": "linear-priorities-kit",
+  "category": "Productivity",
+  "description": "Opinionated Linear setup for roadmaps, triage, and quarterly bet tracking.",
+  "pros": [
+    "Templates for issue types and rituals",
+    "Triage SLA dashboards",
+    "Playbooks for PM <> eng handoffs"
+  ],
+  "cons": [
+    "Linear permissions must be tuned per team",
+    "Migration from Jira requires cleanup"
+  ],
+  "price_note": "Free starter, $39 premium scenes",
+  "affiliate_url": "https://example.com/linear-kit?ref=axiomintel",
+  "updated_at": "2024-12-01"
+}

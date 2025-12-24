@@ -1,0 +1,18 @@
+{
+  "title": "Airtable RevOps Base",
+  "slug": "airtable-revops-base",
+  "category": "Business Ops",
+  "description": "Unified revenue workspace with pipeline, renewals, MQL intake, and SLA alerts.",
+  "pros": [
+    "Pre-wired views for SDR, AE, and CS", 
+    "Usage-based renewal tracker",
+    "Slack webhook recipes included"
+  ],
+  "cons": [
+    "Works best with Airtable Pro",
+    "Automations need API tokens set up"
+  ],
+  "price_note": "$29/mo workspace template",
+  "affiliate_url": "https://example.com/airtable-revops?utm_source=axiomintel",
+  "updated_at": "2024-10-22"
+}

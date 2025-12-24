@@ -1,0 +1,71 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({ params: { slug: post.data.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await post.render();
+const canonical = `https://axiomintel.online/blog/${post.data.slug}`;
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.data.title,
+  description: post.data.description,
+  datePublished: post.data.published_at,
+  dateModified: post.data.updated_at,
+  author: {
+    '@type': 'Organization',
+    name: 'AxiomIntel'
+  },
+  mainEntityOfPage: canonical,
+  publisher: {
+    '@type': 'Organization',
+    name: 'AxiomIntel',
+    logo: {
+      '@type': 'ImageObject',
+      url: 'https://axiomintel.online/og-default.svg'
+    }
+  }
+};
+---
+<BaseLayout
+  title={`${post.data.title} — AxiomIntel`}
+  description={post.data.description}
+  canonical={canonical}
+  ogImage="/og-default.svg"
+  type="article"
+>
+  <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+  <Breadcrumbs
+    items={[
+      { href: '/blog', label: 'Blog' },
+      { href: `/blog/${post.data.slug}`, label: post.data.title }
+    ]}
+  />
+
+  <article class="card mt-4 space-y-4">
+    <header class="space-y-2">
+      <h1 class="text-2xl font-semibold">{post.data.title}</h1>
+      <div class="flex gap-3 text-sm text-slate-400">
+        <span>Published {post.data.published_at}</span>
+        <span>•</span>
+        <span>Updated {post.data.updated_at}</span>
+      </div>
+      <div class="flex gap-2 flex-wrap">
+        {post.data.tags.map((tag) => (
+          <span class="badge-muted" key={tag}>{tag}</span>
+        ))}
+      </div>
+    </header>
+    <Content />
+    <div class="border-t border-slate-800 pt-4 flex flex-wrap gap-3 text-sm">
+      <a class="tag" href="/tools">Browse tools</a>
+      <a class="badge-muted" href="/categories">See categories</a>
+    </div>
+  </article>
+</BaseLayout>

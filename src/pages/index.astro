@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const tools = await getCollection('tools');
+const blog = await getCollection('blog');
+const featuredTools = tools.slice(0, 4);
+const latestPosts = blog.slice(0, 4);
+---
+<BaseLayout
+  title="AxiomIntel — SEO-ready templates, playbooks, and tools"
+  description="Launch faster with curated templates, automation kits, and partner tools across productivity and business ops."
+  canonical="https://axiomintel.online/"
+>
+  <section class="hero mb-10">
+    <div>
+      <p class="tag mb-3">Templates • Automation • Partner offers</p>
+      <h1>Ship your next playbook without starting from scratch.</h1>
+      <p>
+        AxiomIntel curates the best templates and SaaS picks for operators, product leaders, and founders. Built for speed,
+        SEO-friendly, and ready for affiliate attribution.
+      </p>
+      <div class="flex flex-wrap gap-3 mt-5">
+        <a class="tag" href="/tools">Explore tools</a>
+        <a class="badge-muted" href="/blog">Read guides</a>
+      </div>
+    </div>
+    <div class="card gradient-border">
+      <p class="text-slate-300 mb-2">What you get</p>
+      <ul class="space-y-2 text-slate-200">
+        <li>• SEO-ready site built on Astro + MDX + Tailwind</li>
+        <li>• Partner links routed via <code>/go/slug</code> for tracking</li>
+        <li>• 10 tools + 10 guides seeded across ops and productivity</li>
+        <li>• Cloudflare Pages-ready build pipeline</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="mb-10">
+    <h2 class="section-title">Featured tools</h2>
+    <p class="section-subtitle">Affiliate-ready offers in productivity, templates, and business ops.</p>
+    <div class="grid-responsive">
+      {featuredTools.map((tool) => (
+        <article class="card" key={tool.id}>
+          <div class="flex items-center justify-between mb-2">
+            <a href={`/tools/${tool.data.slug}`} class="text-lg font-semibold">{tool.data.title}</a>
+            <span class="badge-muted">{tool.data.category}</span>
+          </div>
+          <p class="text-slate-400 mb-3">{tool.data.description}</p>
+          <div class="flex items-center justify-between">
+            <a class="tag" href={`/go/${tool.data.slug}`}>View offer</a>
+            <a class="hover:text-accent text-sm" href={`/tools/${tool.data.slug}`}>Details →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="mb-8">
+    <h2 class="section-title">Latest guides</h2>
+    <p class="section-subtitle">Actionable playbooks and comparisons for operators.</p>
+    <div class="grid-responsive">
+      {latestPosts.map((post) => (
+        <article class="card" key={post.id}>
+          <a href={`/blog/${post.data.slug}`} class="text-lg font-semibold">{post.data.title}</a>
+          <p class="text-slate-400 my-2">{post.data.description}</p>
+          <div class="flex items-center gap-2 text-sm text-slate-400">
+            <span>{post.data.published_at}</span>
+            <span>•</span>
+            <span>{post.data.tags.join(', ')}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+import type { APIContext } from 'astro';
+
+export async function getStaticPaths() {
+  const tools = await getCollection('tools');
+  return tools.map((tool) => ({ params: { slug: tool.data.slug }, props: { tool } }));
+}
+
+const { tool } = Astro.props;
+const canonical = `https://axiomintel.online/tools/${tool.data.slug}`;
+---
+<BaseLayout
+  title={`${tool.data.title} — AxiomIntel tool review`}
+  description={tool.data.description}
+  canonical={canonical}
+  ogImage="/og-default.svg"
+>
+  <Breadcrumbs
+    items={[
+      { href: '/tools', label: 'Tools' },
+      { href: `/tools/${tool.data.slug}`, label: tool.data.title }
+    ]}
+  />
+
+  <div class="main-grid mt-4">
+    <article class="card space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-2xl font-semibold mb-1">{tool.data.title}</h1>
+          <p class="text-slate-400">{tool.data.description}</p>
+        </div>
+        <span class="badge-muted">{tool.data.category}</span>
+      </div>
+      <div class="flex gap-3">
+        <a class="tag" href={`/go/${tool.data.slug}`}>Get offer</a>
+        <span class="badge-muted">Updated {tool.data.updated_at}</span>
+      </div>
+
+      <div class="pros-cons">
+        <div>
+          <p class="font-semibold mb-2">Pros</p>
+          <ul class="text-slate-300 space-y-1">
+            {tool.data.pros.map((item) => (
+              <li>• {item}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p class="font-semibold mb-2">Cons</p>
+          <ul class="text-slate-300 space-y-1">
+            {tool.data.cons.map((item) => (
+              <li>• {item}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      <div class="card bg-slate-900/40 border border-slate-800">
+        <p class="text-sm text-slate-300">Pricing</p>
+        <p class="text-lg">{tool.data.price_note}</p>
+      </div>
+    </article>
+
+    <aside class="card space-y-3">
+      <p class="font-semibold">Cross-links</p>
+      <a class="hover:text-accent" href="/categories">Browse categories</a><br />
+      <a class="hover:text-accent" href="/blog">Read guides</a><br />
+      <a class="hover:text-accent" href="/tools">Back to catalog</a>
+    </aside>
+  </div>
+</BaseLayout>

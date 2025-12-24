@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const tools = await getCollection('tools');
+const posts = await getCollection('blog');
+
+export async function getStaticPaths() {
+  const categories = Array.from(new Set((await getCollection('tools')).map((t) => t.data.category)));
+  return categories.map((category) => ({
+    params: { slug: category.toLowerCase().replace(/\s+/g, '-') },
+    props: { category }
+  }));
+}
+
+const { category } = Astro.props;
+const normalized = category.toLowerCase().replace(/\s+/g, '-');
+const matchingTools = tools.filter((tool) => tool.data.category.toLowerCase().replace(/\s+/g, '-') === normalized);
+const relatedPosts = posts.filter((post) =>
+  post.data.tags.some((tag) => tag.toLowerCase().includes(category.toLowerCase().split(' ')[0]))
+);
+---
+<BaseLayout
+  title={`${category} tools and templates — AxiomIntel`}
+  description={`Curated tools, templates, and guides for ${category.toLowerCase()} teams.`}
+  canonical={`https://axiomintel.online/categories/${normalized}`}
+>
+  <Breadcrumbs
+    items={[
+      { href: '/categories', label: 'Categories' },
+      { href: `/categories/${normalized}`, label: category }
+    ]}
+  />
+
+  <h1 class="section-title mt-4">{category}</h1>
+  <p class="section-subtitle">Tools and guides tuned for this category.</p>
+
+  <section class="space-y-3">
+    <h2 class="text-xl font-semibold">Tools</h2>
+    <div class="grid-responsive">
+      {matchingTools.map((tool) => (
+        <article class="card" key={tool.id}>
+          <a class="font-semibold text-lg" href={`/tools/${tool.data.slug}`}>{tool.data.title}</a>
+          <p class="text-slate-400 mb-3">{tool.data.description}</p>
+          <div class="flex items-center justify-between">
+            <a class="tag" href={`/go/${tool.data.slug}`}>Get offer</a>
+            <span class="badge-muted">Updated {tool.data.updated_at}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="space-y-3 mt-8">
+    <h2 class="text-xl font-semibold">Guides</h2>
+    <div class="grid-responsive">
+      {relatedPosts.length === 0 && <p class="text-slate-400">More guides coming soon.</p>}
+      {relatedPosts.map((post) => (
+        <article class="card" key={post.id}>
+          <a class="font-semibold text-lg" href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+          <p class="text-slate-400 mb-3">{post.data.description}</p>
+          <span class="badge-muted">{post.data.tags.join(', ')}</span>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

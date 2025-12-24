@@ -1,0 +1,12 @@
+---
+title: "Automation debt: how to avoid spaghetti zaps"
+slug: "automation-debt"
+description: "Simple patterns to keep automation legible as teams scale Zapier and Make scenarios."
+published_at: "2024-05-08"
+updated_at: "2024-11-21"
+tags: ["automation", "process", "revops"]
+---
+
+Every automation should have an **owner, purpose, and test case**. Store them in a living catalog inside <a href="/tools/airtable-revops-base">your RevOps base</a> with links to loom run-throughs.
+
+Standardize naming (`verb-system-object`) and place error alerts in a dedicated Slack channel (<a href="/tools/slack-async-kit">async kit</a>). Review the catalog monthly and kill anything with low adoption.

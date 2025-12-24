@@ -1,0 +1,14 @@
+---
+title: "RevOps automation that doesn’t nuke your CRM"
+slug: "revops-automation"
+description: "Guardrails for Zapier and Make scenarios that move pipeline without duplicating records."
+published_at: "2024-07-19"
+updated_at: "2024-11-11"
+tags: ["revops", "automation", "crm"]
+---
+
+Shadow automation usually breaks when you skip **idempotency**. Use a `find-or-create` step and a checksum field before writing updates.
+
+Centralize secrets in one connection owner and log every mutation to a <a href="/tools/airtable-revops-base">RevOps base</a>. Build a QA playbook with test deals that hit every scenario monthly.
+
+Add Slack alerts with links to the exact records changed so sales leaders can self-serve context.

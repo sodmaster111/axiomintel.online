@@ -1,0 +1,18 @@
+{
+  "title": "Miro Retro & Alignment Board",
+  "slug": "miro-retro-board",
+  "category": "Templates",
+  "description": "Miro workshop board for retros, risk mapping, and quarterly planning alignment.",
+  "pros": [
+    "Timed facilitation prompts",
+    "Voting and prioritization widgets",
+    "Exportable summaries for Notion"
+  ],
+  "cons": [
+    "Requires facilitator to manage timers",
+    "Heavy boards can slow older laptops"
+  ],
+  "price_note": "$18 template with facilitator guide",
+  "affiliate_url": "https://example.com/miro-retro?via=axiomintel",
+  "updated_at": "2024-06-18"
+}

@@ -1,0 +1,18 @@
+{
+  "title": "Notion Sprint Ops Template",
+  "slug": "notion-sprint-ops",
+  "category": "Productivity",
+  "description": "Sprint-ready Notion workspace for rituals, retros, and async updates across squads.",
+  "pros": [
+    "Pre-built weekly and quarterly cadences",
+    "Rollup dashboards for leads, blockers, and risks",
+    "Lightweight approvals for PMM and eng leads"
+  ],
+  "cons": [
+    "Requires paid Notion for relations",
+    "Needs cleanup if you merge multiple teams"
+  ],
+  "price_note": "One-time $59 with lifetime updates",
+  "affiliate_url": "https://example.com/notion-sprint?ref=axiomintel",
+  "updated_at": "2024-11-10"
+}
