@@ -1,0 +1,23 @@
+---
+const {
+  title = 'AxiomIntel — Curated templates and SaaS picks',
+  description = 'Actionable templates, productivity stacks, and partner tools to scale your operations.',
+  url = 'https://axiomintel.online',
+  ogImage = '/og-default.svg',
+  type = 'website',
+  canonical
+} = Astro.props;
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical ?? url} />
+<meta property="og:type" content={type} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage.startsWith('http') ? ogImage : `${url}${ogImage}`} />
+<meta property="og:url" content={canonical ?? url} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage.startsWith('http') ? ogImage : `${url}${ogImage}`} />

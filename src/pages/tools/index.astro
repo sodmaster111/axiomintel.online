@@ -1,0 +1,49 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const tools = await getCollection('tools');
+const categories = Array.from(new Set(tools.map((t) => t.data.category)));
+---
+<BaseLayout
+  title="Tool catalog — AxiomIntel"
+  description="Browse curated templates, automation kits, and SaaS offers ready for affiliate routing."
+  canonical="https://axiomintel.online/tools"
+>
+  <Breadcrumbs items={[{ href: '/tools', label: 'Tools' }]} />
+  <h1 class="section-title mt-4">Tools & offers</h1>
+  <p class="section-subtitle">Every link routes through /go/[slug] so you keep attribution intact.</p>
+
+  <div class="flex flex-wrap gap-2 mb-6">
+    {categories.map((cat) => (
+      <a href={`#${cat.toLowerCase().replace(/\s+/g, '-')}`} class="badge-muted">{cat}</a>
+    ))}
+  </div>
+
+  <div class="space-y-8">
+    {categories.map((cat) => (
+      <section id={cat.toLowerCase().replace(/\s+/g, '-')}
+        class="space-y-3">
+        <div class="flex items-center gap-3">
+          <h2 class="text-xl font-semibold">{cat}</h2>
+          <span class="badge-muted">{tools.filter((t) => t.data.category === cat).length} items</span>
+        </div>
+        <div class="grid-responsive">
+          {tools
+            .filter((tool) => tool.data.category === cat)
+            .map((tool) => (
+              <article class="card" key={tool.id}>
+                <div class="flex items-center justify-between mb-2">
+                  <a href={`/tools/${tool.data.slug}`} class="font-semibold">{tool.data.title}</a>
+                  <a class="tag" href={`/go/${tool.data.slug}`}>Get offer</a>
+                </div>
+                <p class="text-slate-400 mb-3">{tool.data.description}</p>
+                <p class="text-slate-300 text-sm">{tool.data.price_note}</p>
+              </article>
+            ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</BaseLayout>

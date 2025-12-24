@@ -1,0 +1,18 @@
+{
+  "title": "Canny Feedback Ops Pack",
+  "slug": "canny-feedback-ops",
+  "category": "Productivity",
+  "description": "Feedback intake with prioritization scores, changelog automation, and roadmap embeds.",
+  "pros": [
+    "Auto-tagging rules for ICP segments",
+    "PMM-ready changelog templates",
+    "Health metrics per feature request"
+  ],
+  "cons": [
+    "Requires admin access for webhooks",
+    "CRM sync adds setup time"
+  ],
+  "price_note": "$79 one-time with Loom walkthroughs",
+  "affiliate_url": "https://example.com/canny-ops?partner=axiomintel",
+  "updated_at": "2024-08-15"
+}

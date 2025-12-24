@@ -1,0 +1,18 @@
+{
+  "title": "Slack Async Kit",
+  "slug": "slack-async-kit",
+  "category": "Productivity",
+  "description": "Pre-built async rituals with standup workflows, triage channels, and escalation rules.",
+  "pros": [
+    "Workflow Builder recipes included",
+    "Handbook templates for channel hygiene",
+    "Templates for incident comms"
+  ],
+  "cons": [
+    "Enterprise Grid policies must be checked",
+    "Depends on Slack premium features"
+  ],
+  "price_note": "Free starter, $19 premium workflows",
+  "affiliate_url": "https://example.com/slack-async?ref=axiomintel",
+  "updated_at": "2024-09-12"
+}

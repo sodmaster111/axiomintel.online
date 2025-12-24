@@ -1,0 +1,18 @@
+{
+  "title": "Loom Sales Demo Library",
+  "slug": "loom-sales-demos",
+  "category": "Templates",
+  "description": "Ready-to-use demo scripts, split-screen layouts, and CTA overlays for product tours.",
+  "pros": [
+    "Reusable chapter templates",
+    "CTA overlays with tracking",
+    "Messaging variants for ICPs"
+  ],
+  "cons": [
+    "Best performance on Loom Business",
+    "Requires custom domain for CTA links"
+  ],
+  "price_note": "$24 bundle for teams",
+  "affiliate_url": "https://example.com/loom-demos?ref=axiomintel",
+  "updated_at": "2024-09-30"
+}

@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+---
+<BaseLayout
+  title="Guides & comparisons — AxiomIntel"
+  description="Playbooks for operators: async rituals, automation guardrails, pricing tests, and more."
+  canonical="https://axiomintel.online/blog"
+>
+  <Breadcrumbs items={[{ href: '/blog', label: 'Blog' }]} />
+  <h1 class="section-title mt-4">Guides & comparisons</h1>
+  <p class="section-subtitle">Curated articles with JSON-LD for rich snippets.</p>
+
+  <div class="grid-responsive">
+    {posts.map((post) => (
+      <article class="card" key={post.id}>
+        <a class="font-semibold text-lg" href={`/blog/${post.data.slug}`}>{post.data.title}</a>
+        <p class="text-slate-400 mb-3">{post.data.description}</p>
+        <div class="flex items-center gap-2 text-sm text-slate-400">
+          <span>{post.data.published_at}</span>
+          <span>•</span>
+          <span>{post.data.tags.join(', ')}</span>
+        </div>
+      </article>
+    ))}
+  </div>
+</BaseLayout>
